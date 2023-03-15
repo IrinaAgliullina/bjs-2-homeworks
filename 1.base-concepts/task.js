@@ -13,5 +13,19 @@ function solveEquation(a, b, c) {
 }
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  
+  let arr = [percent, contribution, amount, countMonths];
+
+  arr.forEach(element => {
+    if (typeof(element) === String) {
+      element = +element;
+    } else {
+      return false;
+    }
+  });
+
+  let percentPerMonth = arr.percent / 1200;
+  let amountOfCredit = arr.amount - arr.contribution;
+  let monthlyPayment = amountOfCredit * (percentPerMonth + (percentPerMonth / (((1 + percentPerMonth).Math.pow(countMonths)) - 1)));
+  let totalAmount = +(monthlyPayment * 12).toFixed(2);
+  return totalAmount;
 }
