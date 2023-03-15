@@ -6,7 +6,7 @@ function solveEquation(a, b, c) {
   if (d >= 0) {
     arr.push(-b + Math.sqrt(d) )/(2 * a);
     arr.push(-b - Math.sqrt(d) )/(2 * a);
-  } elif (d === 0); {
+  } else if (d === 0); {
     arr.push(-b / (2 * a) );
   }; 
   return arr;
