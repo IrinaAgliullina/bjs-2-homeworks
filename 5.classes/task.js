@@ -24,7 +24,40 @@ class PrintEditionItem {
   get state() {
     return this._state;
   }
+}
 
-  
-  
+class Magazine extends PrintEditionItem {
+  constructor() {
+    super();
+    this.type = 'magazine';
+  }
+}
+
+class Book extends PrintEditionItem {
+  constructor(author) {
+    super();
+    this.author = author;
+    this.type = 'book';
+  }
+}
+
+class NovelBook extends Book {
+  constructor() {
+    super();
+    this.type = 'novel';
+  }
+}
+
+class FantasticBook extends Book {
+  constructor() {
+    super();
+    this.type = 'fantastic';
+  }
+}
+
+class DetectiveBook extends Book {
+  constructor() {
+    super();
+    this.type = 'detective';
+  }
 }
