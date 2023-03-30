@@ -83,4 +83,14 @@ class Library {
       }
     }
   }
+
+  giveBookByName(bookName) {
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].name === bookName) {
+        this.books[i].pop();
+      } else {
+        return null;
+      }
+    }
+  }
 }
