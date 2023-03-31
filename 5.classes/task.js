@@ -74,20 +74,63 @@ class Library {
     }
   }
 
-  findBookBy(type, value) { // Поиск книги
-    if (this.books.find(book => book[type] === value) === undefined) {
+  findBookBy(type, value) {
+    let foundedBook = this.books.find(book => book[type] === value);
+    if (foundedBook === undefined) { // если книга не найдена, вернуть null
       return null;
     }
-    return this.books.find(book => book[type] === value);
+    return foundedBook;
   }
 
   giveBookByName(bookName) {
-    for (let book of this.books) {
-      if (book.name === bookName) {
-        
-      } else {
-       
-      }
+    let bookToGive = this.findBookBy('name', bookName);
+    if (bookToGive !== null) { // если книга найдена, удалить из библиотеки
+      this.books.splice(this.books.indexOf(bookToGive, 1));
     }
+    return bookToGive;
   }
 }
+
+const library = new Library("Библиотека имени Ленина");
+
+library.addBook(
+ new DetectiveBook(
+   "Артур Конан Дойл",
+   "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе",
+   2019,
+   1008
+ )
+);
+library.addBook(
+  new NovelBook(
+    "Герберт Уэллс", 
+    "Машина времени", 
+    1895, 
+    138
+  )
+);
+library.addBook(
+  new Book(
+    "Преображенский П.А.",
+    "Очерк истории Самарского края", 
+    1919, 
+    96
+  )
+);
+const picknick = new FantasticBook(
+   "Аркадий и Борис Стругацкие",
+   "Пикник на обочине",
+   1972,
+   168
+ )
+library.addBook(picknick);
+
+console.log("Найдена книга 1919 года издания: ", library.findBookBy("releaseDate", 1919));
+
+library.giveBookByName("Пикник на обочине");
+picknick.state = 90;
+console.log("Состояние книги 'Пикник на обочине' до ремонта: ", picknick.state);
+picknick.fix();
+console.log("Состояние после ремонта: ", picknick.state);
+library.addBook(picknick);
+console.log("Найдена книга после ремонта: ", library.findBookBy("name", "Пикник на обочине"));
