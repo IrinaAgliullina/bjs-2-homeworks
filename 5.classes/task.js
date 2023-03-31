@@ -1,3 +1,5 @@
+// Задача 1. Печатное издание
+
 class PrintEditionItem {
   constructor(name, releaseDate, pagesCount) {
     this.name = name;
@@ -62,6 +64,8 @@ class DetectiveBook extends Book {
   }
 }
 
+// Задача 2. Библиотека
+
 class Library {
   constructor(name) {
     this.name = name;
@@ -76,6 +80,7 @@ class Library {
 
   findBookBy(type, value) {
     let foundedBook = this.books.find(book => book[type] === value);
+
     if (foundedBook === undefined) { // если книга не найдена, вернуть null
       return null;
     }
@@ -84,6 +89,7 @@ class Library {
 
   giveBookByName(bookName) {
     let bookToGive = this.findBookBy('name', bookName);
+
     if (bookToGive !== null) { // если книга найдена, удалить из библиотеки
       this.books.splice(this.books.indexOf(bookToGive, 1));
     }
@@ -129,8 +135,51 @@ console.log("Найдена книга 1919 года издания: ", library.
 
 library.giveBookByName("Пикник на обочине");
 picknick.state = 90;
+
 console.log("Состояние книги 'Пикник на обочине' до ремонта: ", picknick.state);
 picknick.fix();
 console.log("Состояние после ремонта: ", picknick.state);
+
 library.addBook(picknick);
 console.log("Найдена книга после ремонта: ", library.findBookBy("name", "Пикник на обочине"));
+
+// Задача 3. Журнал успеваемости
+
+class Student {
+  constructor(name) {
+    this.name = name;
+    this.marks = {};
+  }
+
+  addMark(mark, subject) {
+    if (this.marks.hasOwnProperty([subject]) === false) {
+      this.marks[subject] = [];
+    }
+
+    this.marks[subject].push(mark);
+  }
+
+  getAverageBySubject(subject) {
+    if (this.marks.hasOwnProperty([subject]) === false || this.marks[subject].length === 0) {
+        return 0;
+    }
+
+    return this.marks[subject].reduce((total, mark) => total + mark) / this.marks[subject].length;
+  }
+
+  getAverage() {
+    let subjectsArray = Object.keys(this.marks);
+    return subjectsArray.reduce((total, current, index, subjectsArray) => total + this.getAverageBySubject(subjectsArray[index]), 0) / subjectsArray.length;
+  }
+}
+
+const student = new Student("Олег Никифоров");
+
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+
+console.log(student);
+console.log('Средняя оценка по физике: ', student.getAverageBySubject("физика"));
+console.log('Общая средняя оценка: ', student.getAverage());
