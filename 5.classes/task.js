@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 // Задача 1. Печатное издание
 
 class PrintEditionItem {
@@ -185,4 +183,3 @@ student.addMark(4, "физика");
 console.log(student);
 console.log('Средняя оценка по физике: ', student.getAverageBySubject("физика"));
 console.log('Общая средняя оценка: ', student.getAverage());
->>>>>>> a2f706f4e1c23a5559f7c453e4f3651a30ed175f

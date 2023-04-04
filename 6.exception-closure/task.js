@@ -28,22 +28,16 @@ class Triangle {
     this.a = a;
     this.b = b;
     this.c = c;
-    this.perimeter = a + b + c;
-    this.area = Number(Math.sqrt((this.perimeter / 2) * (this.perimeter / 2 - a) * (this.perimeter / 2 - b) * (this.perimeter / 2 - c)).toFixed(3));
+    this._perimeter = a + b + c;
+    this._area = Number(Math.sqrt((this._perimeter / 2) * (this._perimeter / 2 - a) * (this._perimeter / 2 - b) * (this._perimeter / 2 - c)).toFixed(3));
   }
   
   get perimeter() {
   	return this._perimeter;
   }
-  set perimeter(perimeter) {
-    this._perimeter = perimeter;
-  }
   
   get area() {
   	return this._area;
-  }
-  set area(area) {
-    this._area = area;
   }
 }
 
@@ -51,6 +45,14 @@ function getTriangle(a, b, c) {
   try {
     return new Triangle(a, b, c);
   } catch(error) {
-    
+    return {
+      get perimeter() {
+        return 'Ошибка! Треугольник не существует';
+      },
+      
+      get area() {
+        return 'Ошибка! Треугольник не существует';
+      } 
+    }
   }
 }
