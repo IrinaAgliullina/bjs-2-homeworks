@@ -28,16 +28,14 @@ class Triangle {
     this.a = a;
     this.b = b;
     this.c = c;
-    this._perimeter = a + b + c;
-    this._area = Number(Math.sqrt((this._perimeter / 2) * (this._perimeter / 2 - a) * (this._perimeter / 2 - b) * (this._perimeter / 2 - c)).toFixed(3));
   }
   
   get perimeter() {
-  	return this._perimeter;
+  	return this.a + this.b + this.c;
   }
   
   get area() {
-  	return this._area;
+  	return Number(Math.sqrt(((this.a + this.b + this.c) / 2) * ((this.a + this.b + this.c) / 2 - this.a) * ((this.a + this.b + this.c) / 2 - this.b) * ((this.a + this.b + this.c) / 2 - this.c)).toFixed(3));
   }
 }
 
